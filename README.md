@@ -97,8 +97,8 @@
 - o arquivo .exe
 - o template .pptx
 
-📂You must use the spreadsheet for the recording of your data. Connect it to the form that will perform the collecting of said data. And connect the folder 'arquivos' so it will be the upload location for the images.  
-📂Você deve utilizar esta planilha para o registro de seus dados. Conecte-a com o formulário que fará a coleta desses dados. E conecte a pasta 'arquivos' para que seja o local de upload das imagens.
+📂You must use the spreadsheet for the recording of your data. Connect it to the form that will perform the collecting of said data. And connect the folder 'arquivos' so it will be the upload location for the images. For more detailed information about connecting the spreadsheet and the form, access the file [README about the form](forms/README.md).
+📂Você deve utilizar esta planilha para o registro de seus dados. Conecte-a com o formulário que fará a coleta desses dados. E conecte a pasta 'arquivos' para que seja o local de upload das imagens. Para informações mais detalhadas sobre conectar a planilha e o formulário, acesse o arquivo [README sobre o formulário](forms/README.md).
 
 <!-- ![O conteúdo da pasta](./imgs/readme_pasta.png) -->
 <img width="223" height="123" alt="readme_pasta" src="https://github.com/user-attachments/assets/d8fd39bb-066d-46f8-9878-9bf4c7d1c405" />
