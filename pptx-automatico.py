@@ -136,39 +136,51 @@ def four_block(presentation,dados,lingua="pt-br"):
     ##########################################################################
     ## Inserir título e código da NCMR
     titulo = slide.shapes[0]
-    titulo.text = dados["cod_reliance"] + " - PN " + dados['part_number'] + " - " + dados["descricao_part"]
+    titulo.text = dados["cod"] + " - PN " + dados['part_number'] + " - " + dados["descricao_part"]
     
     ##########################################################################
     ## Inserir código da NCMR
     cod_ncmr = slide.shapes[1]
-    cod_ncmr.text = dados["cod_reliance"]    
+    cod_ncmr.text = dados["cod"]    
 
     ##########################################################################
     ## Inserir descrição
     descricao = slide.shapes[2]
-    valores_descricao = [dados["errado"], dados["correto"]]
+    try:
+        valores_descricao = [dados["problema"], dados["correto"]]
+    except:
+        valores_descricao = [dados["problema"], ""]
     adc_shape(descricao,campos_descricao, valores_descricao)
 
     ##########################################################################
     ## Inserir prioridade
     prioridade = slide.shapes[9]
-    valor_prioridade = [dados["prioridade"]]
-    adc_shape(prioridade,campo_prioridade, valor_prioridade)
-
-    cor = cor_prioridade(dados["prioridade"])
-
-    prioridade.fill.solid()
-    prioridade.fill.fore_color.rgb  = cor
+    try:
+        valor_prioridade = [dados["prioridade"]]
+        adc_shape(prioridade,campo_prioridade, valor_prioridade)
+        cor = cor_prioridade(dados["prioridade"])
+        prioridade.fill.solid()
+        prioridade.fill.fore_color.rgb  = cor
+    except:
+        pass
 
     ##########################################################################
     ## Inserir dados relevantes
     dados_relevantes = slide.shapes[3]
-    valores_dados_relevantes = [dados["part_number"],
+    try:
+        valores_dados_relevantes = [dados["part_number"],
                       dados["serial_number"],
                       dados["qtd_itens"],
                       dados["modelo_locomotiva"],
                       dados["numero_locomotiva"],
                       dados["fornecedor"] + " / " + dados["fabricante"]] 
+    except:
+        valores_dados_relevantes = [dados["part_number"],
+                      dados["serial_number"],
+                      "1",
+                      dados["modelo_locomotiva"],
+                      dados["numero_locomotiva"],
+                      "" + " / " + ""] 
     adc_shape(dados_relevantes, campos_dados_relevantes, valores_dados_relevantes)
 
     ##########################################################################
@@ -353,21 +365,24 @@ n = len(sys.argv)
 # Arguments passed
 if n > 1:
     print("Programa executado a partir do Excel.")
-    posicao=sys.argv[1]
+    aba=sys.argv[1]
+    posicao=sys.argv[2]
 else:
     print("Programa executado sem interação do Excel. Será acessada a primeira linha da tabela.")
+    aba='ncmr'
     posicao="$A$8"
 
 print("Acessando a planilha...")
 wb = xw.Book(PATH_PLANILHA)
-sheet = wb.sheets['ncmr']
-tabela = sheet.tables('ncmr')
+sheet = wb.sheets[aba]
+tabela = sheet.tables(aba)
 print("Extraindo as informações...")
+print("\tTabela:", aba)
 dados = get_data(sheet, tabela, posicao)
 path_4block = PATH_IMAGENS+dados["PowerAppsId"].strip()+"\\"
 salvar=True
 for file in os.listdir(path_4block):
-    if file.startswith(dados["cod_reliance"]) and file.endswith(".pptx"):
+    if file.startswith(dados["cod"]) and file.endswith(".pptx"):
         salvar = False
         print("Four-Block já existe.")
         break
@@ -379,17 +394,17 @@ if salvar:
     four_block(prs, dados, "English")
     #time.sleep(5)
   
-    if dados["cod_reliance"] == " ":
-        prs.save(path_4block + "NCMR-0000-000000 - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
+    if dados["cod"] == " ":
+        prs.save(path_4block + "NCMR-RC-0000-000000 - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
         print("\tFour-Block criado.")
         print("\tAbrindo o Four-Block...")
-        os.startfile(path_4block + "NCMR-0000-000000 - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
+        os.startfile(path_4block + "NCMR-RC-0000-000000 - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
     else:
-        prs.save(path_4block + dados["cod_reliance"] + " - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
+        prs.save(path_4block + dados["cod"] + " - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
         print("\tFour-Block criado.")
         print("\tAbrindo o Four-Block...")
-        os.startfile(path_4block + dados["cod_reliance"] + " - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
+        os.startfile(path_4block + dados["cod"] + " - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
 else:
     print("\tAbrindo o Four-Block...")
-    os.startfile(path_4block + dados["cod_reliance"] + " - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
+    os.startfile(path_4block + dados["cod"] + " - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
 time.sleep(5)
