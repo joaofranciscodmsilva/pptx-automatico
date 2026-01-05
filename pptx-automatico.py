@@ -146,9 +146,12 @@ def four_block(presentation,dados,lingua="pt-br"):
     ##########################################################################
     ## Inserir descrição
     descricao = slide.shapes[2]
-    texto_descricao = dados["problema"]
-    if (dados["Informativa"]=="Sim"):
-        texto_descricao = dados["problema"] + "\n\n" + "NCMR INFORMATIVA" 
+    try:
+        if (dados["Informativa"]=="Sim"):
+            texto_descricao = dados["problema"] + "\n\n" + "NCMR INFORMATIVA"
+    except:
+        texto_descricao = dados["problema"]
+    
     try:
         valores_descricao = [texto_descricao, dados["correto"]]
     except:
