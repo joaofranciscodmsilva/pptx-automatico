@@ -146,10 +146,13 @@ def four_block(presentation,dados,lingua="pt-br"):
     ##########################################################################
     ## Inserir descrição
     descricao = slide.shapes[2]
+    texto_descricao = dados["problema"]
+    if (dados["Informativa"]=="Sim"):
+        texto_descricao = dados["problema"] + "\n\n" + "NCMR INFORMATIVA" 
     try:
-        valores_descricao = [dados["problema"], dados["correto"]]
+        valores_descricao = [texto_descricao, dados["correto"]]
     except:
-        valores_descricao = [dados["problema"], ""]
+        valores_descricao = [texto_descricao, ""]
     adc_shape(descricao,campos_descricao, valores_descricao)
 
     ##########################################################################
@@ -334,7 +337,7 @@ def get_data(sheet, tabela, posicao):
         else:
             dados[i]=sheet[endereco].value
         #print(i,": ",dados[i])
-    dados["descricao_part"]=dados["descricao_part"].replace("/","-")
+    dados["descricao_part"] = dados["descricao_part"].replace("/","-")
     return dados
 
 def inserir_imagem(figura, path_imagem):
@@ -359,10 +362,9 @@ def cor_prioridade(texto):
     }
     return switch.get(texto, RGBColor(255,255,255))
 
-####################################################################################################################################
-## Main
+########## Main ##########
 n = len(sys.argv)
-# Arguments passed
+#### Arguments passed ####
 if n > 1:
     print("Programa executado a partir do Excel.")
     aba=sys.argv[1]
@@ -380,7 +382,7 @@ print("Extraindo as informações...")
 print("\tTabela:", aba)
 dados = get_data(sheet, tabela, posicao)
 path_4block = PATH_IMAGENS+dados["PowerAppsId"].strip()+"\\"
-salvar=True
+salvar = True
 for file in os.listdir(path_4block):
     if file.startswith(dados["cod"]) and file.endswith(".pptx"):
         salvar = False
