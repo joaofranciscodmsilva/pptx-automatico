@@ -413,3 +413,6 @@ else:
     print("\tAbrindo o Four-Block...")
     os.startfile(path_4block + dados["cod"] + " - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
 time.sleep(5)
+
+
+num_int = 3
