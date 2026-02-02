@@ -149,7 +149,7 @@ def four_block(presentation,dados,lingua="pt-br"):
     
     try:
         if (dados["Informativa"]=="Sim"):
-            texto_descricao = dados["problema"] + "\n\n" + "NCMR INFORMATIVA"
+            texto_descricao = dados["problema"] + "\n\n" + "NCMR INFORMATIVA: " + dados["informativa_retrabalho"]
         else:
             texto_descricao = dados["problema"]
     except:
@@ -416,6 +416,3 @@ else:
     print("\tAbrindo o Four-Block...")
     os.startfile(path_4block + dados["cod"] + " - PN " + dados["part_number"] + ' - ' + dados["descricao_part"] + ".pptx")
 time.sleep(5)
-
-
-num_int = 3
