@@ -1,4 +1,3 @@
-Attribute VB_Name = "Botão"
 Rem Link útil, como executar script Python a partir de botão no Excel: https://pythonandvba.com/blog/how-to-execute-a-python-script-from-excel-using-vba/
 Rem Link útil, como passar argumento para o script Python: https://stackoverflow.com/questions/63873954/excel-vba-pass-arguments-to-python-script
 Sub RunPythonScript()
@@ -57,4 +56,5 @@ Sub RunPythonScript()
         MsgBox ("Você clicou em Cancelar. Selecione a célula correta.")
     End Select
 End Sub
+
 

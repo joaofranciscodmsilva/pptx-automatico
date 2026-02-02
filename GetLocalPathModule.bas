@@ -8,7 +8,7 @@ Attribute VB_Name = "GetLocalPathModule"
 '
 ' Author: Guido Witt-Dörring
 ' Created: 2022/07/01
-' Updated: 2025/06/02
+' Updated: 2026/01/16
 ' License: MIT
 '
 ' ----------------------------------------------------------------
@@ -16,7 +16,7 @@ Attribute VB_Name = "GetLocalPathModule"
 ' https://stackoverflow.com/a/73577057/12287457
 ' ----------------------------------------------------------------
 '
-' Copyright (c) 2025 Guido Witt-Dörring
+' Copyright (c) 2026 Guido Witt-Dörring
 '
 ' MIT License:
 ' Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -1048,7 +1048,7 @@ Continue:
                 Next j
                 If (b(j) <= maxSigByte) And (b(j - 1) < &H80) Then j = j - 1
                 If b(j) < minName Then j = j - 1
-
+                If b(j) < minName Then j = j - 1
                 nameSize = b(j)
                 If nameSize Mod 2 = 0 Then GoTo NextSig
                 nameSize = (nameSize - 13) / 2
@@ -1548,4 +1548,5 @@ Public Function GetRemotePath(ByVal path As String, _
                            As String
     GetRemotePath = GetLocalPath(path, False, vbNullString, rebuildCache, True)
 End Function
+
 
