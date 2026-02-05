@@ -15,7 +15,7 @@
 
 ## O processo de implementação
 ### 1. Pastas
-- É preciso ter uma pasta dedicada para a Planilha, para os arquivos (imagens, vídeos e powerpoints), e para o Script Python e a .venv adequada para executar o Script.
+- É preciso ter uma pasta dedicada para a Planilha, para os arquivos (imagens, vídeos e powerpoints), e para o arquivo executável.
 - Essa pasta precisa ser compartilhada com toda as pessoas que farão o uso das ferramentas. O SharePoint é o local que usamos para criá-la. 
 - Para acessá-la em sua máquina (isso é necessário), clique em “Adicionar atalho aos Meus arquivos” ou “Add shortcut to My files”. Um atalho para essa pasta foi criado no seu OneDrive e provavelmente também no seu Explorador de Arquivos em seu computador.
 
