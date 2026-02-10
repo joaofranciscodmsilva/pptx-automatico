@@ -108,7 +108,8 @@ def four_block(presentation,dados,lingua="pt-br"):
     if (lingua == "pt-br"):
         master_number = 0
         campos_descricao = ["Qual é o problema? ", "\n\nQual é o estado correto? "]
-        campos_dados_relevantes = ["Part Number: ", 
+        campos_dados_relevantes = ["Origem: ",
+                    "\nPart Number: ", 
                     "\nSerial Number: ",
                     "\nQuantidade: ",
                     "\nModelo da Loco: ",
@@ -121,7 +122,8 @@ def four_block(presentation,dados,lingua="pt-br"):
     else:
         master_number = 1 
         campos_descricao = ["What is the problem? ", "\n\nWhat is the correct form/behavior? "]
-        campos_dados_relevantes = ["Part Number: ", 
+        campos_dados_relevantes = ["Origin: ",
+                    "\nPart Number: ", 
                     "\nSerial Number: ",
                     "\nQuantity: ",
                     "\nLoco model: ",
@@ -177,14 +179,16 @@ def four_block(presentation,dados,lingua="pt-br"):
     ## Inserir dados relevantes
     dados_relevantes = slide.shapes[3]
     try:
-        valores_dados_relevantes = [dados["part_number"],
+        valores_dados_relevantes = [dados["local"],
+                      dados["part_number"],
                       dados["serial_number"],
                       dados["qtd_itens"],
                       dados["modelo_locomotiva"],
                       dados["numero_locomotiva"],
                       dados["fornecedor"] + " / " + dados["fabricante"]] 
     except:
-        valores_dados_relevantes = [dados["part_number"],
+        valores_dados_relevantes = [dados["local"],
+                      dados["part_number"],
                       dados["serial_number"],
                       "1",
                       dados["modelo_locomotiva"],
