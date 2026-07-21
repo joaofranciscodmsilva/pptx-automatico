@@ -97,7 +97,7 @@ def add_slide_4block(presentation, master_number, layout_number):
     slide = presentation.slides.add_slide(title_slide_layout)       ## Cria um novo slide na configuracao do layout_number
     return slide
 
-def four_block(presentation,dados,lingua="pt-br"):
+def four_block(presentation,tipo,dados,lingua="pt-br"):
     """ Cria, formata e popula um slide de 4Block com todas as informações necessárias.
 
     Parameters:
@@ -195,7 +195,7 @@ def four_block(presentation,dados,lingua="pt-br"):
                       dados["numero_locomotiva"],
                       "" + " / " + ""] 
     adc_shape(dados_relevantes, campos_dados_relevantes, valores_dados_relevantes)
-
+    
     ##########################################################################
     ## Inserir disposição
     disposicao = slide.shapes[4]
@@ -387,6 +387,8 @@ else:
 print("Acessando a planilha...")
 wb = xw.Book(PATH_PLANILHA)
 sheet = wb.sheets[aba]
+sheet_name = sheet.name
+#print(f"Sheet: {sheet_name}")
 tabela = sheet.tables(aba)
 print("Extraindo as informações...")
 print("\tTabela:", aba)
